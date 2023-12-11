@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <!-- slider section -->
+    <section class="slider_section ">
+      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6 ">
+                  <div class="detail-box">
+                    <h1>
+                      Kilo <br>
+                      crypto
+                    </h1>
+                    <p>
+                      Welcome to Kilocrypto, your premier destination for all things cryptocurrency! Immerse yourself in the fascinating world of digital assets, blockchain technology, and decentralized finance as we guide you through the latest trends, news, and insights shaping the future of finance.
+                    </p>
+                    <div class="btn-box">
+                      <a href="" class="btn1">
+                        Read More
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="img-box">
+                    <img src="{% static "images/brandmark-design (6).png" %}" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item ">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6 ">
+                  <div class="detail-box">
+                    <h1>
+                      Top Daily  <br>
+                      Trading Signals
+                    </h1>
+                    <p>
+                      Your daily haven for unparalleled trading signals and market insights! Our cutting-edge algorithm and team of expert analysts work tirelessly to bring you the absolute best trading signals every single day.                    </p>
+                    <div class="btn-box">
+                      <a href="" class="btn1">
+                        Read More
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="img-box">
+                    <img src="{% static "images/brandmark-design (5).png" %}" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6 ">
+                  <div class="detail-box">
+                    <h1>
+                      AI <br>
+                      analysis
+                    </h1>
+                    <p>
+                      Introducing Kilocrypto, your gateway to the future of market predictions powered by state-of-the-art artificial intelligence (AI). At Kilocrypto, we leverage the latest advancements in machine learning to provide you with unparalleled insights into market trends, enabling you to make informed investment decisions.                    </p>
+                    <div class="btn-box">
+                      <a href="" class="btn1">
+                        Read More
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="img-box">
+                    <img src="{% static "images/brandmark-design (7).png" %}" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ol class="carousel-indicators">
+          <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+          <li data-target="#customCarousel1" data-slide-to="1"></li>
+          <li data-target="#customCarousel1" data-slide-to="2"></li>
+        </ol>
+      </div>
+
+    </section>
+    <!-- end slider section -->
+  </div>
+
+
+
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container  ">
+      <div class="heading_container heading_center">
+        <h2>
+          About <span>Us</span>
+        </h2>
+        <p>
+          About Us: Kilocrypto - Unleashing the Power of AI in Market Prediction
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-md-6 ">
+          <div class="img-box">
+            <img src="{% static "images/about-img.png" %}" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <h3>
+              We Are Kilocrypto
+            </h3>
+            <p>
+              Welcome to Kilocrypto, where innovation meets financial wisdom in the dynamic world of market prediction. Our platform is a testament to the transformative capabilities of artificial intelligence, combining cutting-edge technology with a commitment to empowering investors of all levels.
+
+
+            </p>
+            <p>
+              At Kilocrypto, our mission is clear: to redefine how investors approach the market by harnessing the predictive power of AI. We believe that everyone, regardless of their experience level, should have access to advanced tools that enable them to navigate the complexities of the financial landscape with confidence            </p>
+            <a href="{% url "about" %}">
+              Read More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+
+  
+  <!-- end client section -->
+
+  {% endblock content %}

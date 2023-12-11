@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<style>
+
+    .blog-details {
+        margin-top: 40px;
+    }
+
+    .blog-details img {
+        max-width: 100%;
+        height: auto;
+    }
+    p, h2, h4 {
+        color: gray;
+    }
+</style>
+
+<!-- Blog Details Content -->
+<div class="container blog-details">
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Blog Post Details -->
+            <img src="{{blog.image.url}}" alt="Blog Post Image" class="img-fluid mb-3">
+            <h2>{{blog.title}}</h2>
+            <p class="text-muted">{{blog.created}}</p>
+            <p class="text-muted">{{blog.edited}}</p>
+            <p>{{blog.description}}</p>
+        </div>
+
+        <!-- Sidebar (optional) -->
+        <div class="col-md-4">
+            <h4>About Blue Blog</h4>
+            <p>This is a simple blog with a blue theme created using HTML, CSS, and Bootstrap.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+{% endblock content %}

@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block content %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <style>
+    /* Add custom styles here */
+    .user-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .ai-message-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawStuff);
+
+    function drawStuff() {
+      var button = document.getElementById('change-chart');
+      var chartDiv = document.getElementById('chart_div');
+      var aiMessageDiv = document.getElementById('ai-message');
+
+      var data = google.visualization.arrayToDataTable([
+        ['Signals', 'current', 'initail'],
+        {% for coin in coins %}
+        ['{{coin.coin_name}}', {{coin.initial_price}},{{coin.current_price}}],
+        {% endfor %}
+      ]);
+
+      var materialOptions = {
+        width: 900,
+        chart: {},
+        series: {
+          0: { axis: 'current' },
+          1: { axis: 'initail' }
+        },
+        axes: {
+          y: {
+            distance: {label: 'USD'},
+            brightness: {side: 'right', label: '-----'}
+          }
+        }
+      };
+
+      var classicOptions = {
+        width: 900,
+        series: {
+          0: {targetAxisIndex: 0},
+          1: {targetAxisIndex: 1}
+        },
+        title: 'Best spot coin signals',
+        vAxes: {
+          0: {title: 'USD'},
+          1: {title: '-----'}
+        }
+      };
+
+      function drawMaterialChart() {
+        var materialChart = new google.charts.Bar(chartDiv);
+        materialChart.draw(data, google.charts.Bar.convertOptions(materialOptions));
+        button.innerText = 'Change to Classic';
+        button.onclick = drawClassicChart;
+      }
+
+      function drawClassicChart() {
+        var classicChart = new google.visualization.ColumnChart(chartDiv);
+        classicChart.draw(data, classicOptions);
+        button.innerText = 'Change to Material';
+        button.onclick = drawMaterialChart;
+      }
+
+      drawMaterialChart();
+    }
+  </script>
+  
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card user-card">
+            <div class="card-body">
+              <h5 class="card-title">Top coin 24 hours changes</h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"  style='color: {% if '-' in bitcoin %}red{% else %}green{% endif %};'>
+                  <img src="https://cdn1.iconfinder.com/data/icons/social-icons-33/512/bitcoin-256.png" alt="Bitcoin Icon" style="width: 20px; height: 20px; margin-right: 5px;">
+                  Bitcoin <br>{{ bitcoin }}
+              </li>
+              <li class="list-group-item"  style='color: {% if '-' in ethereum %}red{% else %}green{% endif %};'>
+                <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/116_Ethereum_logo_logos-64.png" alt="Bitcoin Icon" style="width: 20px; height: 20px; margin-right: 5px;">
+                Ethereum <br>{{ ethereum }}
+            </li>
+            <li class="list-group-item"  style='color: {% if '-' in binancecoin %}red{% else %}green{% endif %};'>
+              <img src="https://cdn0.iconfinder.com/data/icons/blockchain-classic/256/Binance_Coin-64.png" alt="Bitcoin Icon" style="width: 20px; height: 20px; margin-right: 5px;">
+              Binancecoin <br>{{ binancecoin }}
+          </li>              
+        </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Top trading signals</h5>
+              <div id="chart_div" style="height: 400px;"></div>
+              <br>
+              <button id="change-chart" class="btn btn-primary"></button>
+              <form action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <input type="submit" id="logout-button" class="btn btn-danger" value="Logout">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="card ai-message-card">
+            <div class="card-body">
+              {% for coin in coins %}
+              <h1>Kilocrypto AI prediction about market</h1>
+              <h5 class="card-title">{{coin.ai_message}}</h5>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  {% endblock content %}
+
